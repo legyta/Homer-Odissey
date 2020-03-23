@@ -9,6 +9,22 @@ class SignUp extends Component {
     userInput: "test@test.com"
   };
 
+  updateFirstnameField = e => {
+    this.setState({ name: e.target.value });
+  };
+
+  updateLastnameField = e => {
+    this.setState({ lastname: e.target.value });
+  };
+
+  updatePwField = e => {
+    this.setState({ pw: e.target.value });
+  };
+
+  updatePwConfField = e => {
+    this.setState({ pwconf: e.target.value });
+  };
+
   updateEmailField = event => {
     const email = event.target.value;
     this.setState({ userInput: email });
@@ -25,20 +41,32 @@ class SignUp extends Component {
         <h1>{JSON.stringify(this.state, 1, 1)} </h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Name</label>
-          <input type="text" name="firstname" placeholder="enter your name" />
+          <input
+            type="text"
+            name="firstname"
+            placeholder="enter your name"
+            onChange={this.updateFirstnameField}
+          />
           <label htmlFor="lastname">Lastname</label>
-          <input type="text" name="lastname" placeholder="enter your surname" />
+          <input
+            type="text"
+            name="lastname"
+            placeholder="enter your surname"
+            onChange={this.updateLastnameField}
+          />
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             placeholder="enter your password"
+            onChange={this.updatePwField}
           />
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             name="password-conf"
             placeholder="confirm your password"
+            onChange={this.updatePwConfField}
           />
           <label htmlFor="email">enter email here</label>
           <input

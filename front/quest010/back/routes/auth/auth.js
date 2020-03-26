@@ -8,13 +8,15 @@ const connection = require("../../helpers/db.js");
 
 authRouter.post("/signup", function(req, res, next) {
   const formFill = req.body;
-  connection.query("INSERT INTO posts SET ?", formFill, (error, results) => {
+  //const { flash, ...formFill } = req.body;
+
+  connection.query("INSERT INTO users SET ?", formFill, (error, res) => {
     if (error) {
-      results.status(500).send(error);
-      results.end();
+      res.status(500).json({ flash: error.message });
+      res.end();
     } else {
-      results.status(200).json(results);
-      results.end();
+      res.status(200).json({ flash: "User has been signed up!" });
+      res.end();
     }
   });
 });

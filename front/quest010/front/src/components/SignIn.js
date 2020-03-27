@@ -8,34 +8,18 @@ const horizontal = "center";
 
 class SignUp extends Component {
   state = {
-    email: "mon@email.com",
-    password: "monPassw0rd"
-    // name: "James",
-    // lastname: "Bond",
-    // flash: "",
-    // open: false
+    email: "",
+    password: ""
   };
 
   updateEmailField = event => {
     const email = event.target.value;
-    this.setState({ userInput: email });
+    this.setState({ email: email });
   };
 
   updatePwField = e => {
-    this.setState({ pw: e.target.value });
+    this.setState({ password: e.target.value });
   };
-
-  //   updatePwConfField = e => {
-  //     this.setState({ pwconf: e.target.value });
-  //   };
-
-  // updateFirstnameField = e => {
-  //  this.setState({ name: e.target.value });
-  // };
-
-  // updateLastnameField = e => {
-  // this.setState({ lastname: e.target.value });
-  //};
 
   handleSubmit = e => {
     e.preventDefault();
@@ -78,7 +62,7 @@ class SignUp extends Component {
             type="email"
             name="email"
             className="signup-email"
-            value={this.state.userInput}
+            value={this.state.email}
             onChange={this.updateEmailField}
           />
 
@@ -87,6 +71,7 @@ class SignUp extends Component {
             type="password"
             name="password"
             placeholder="enter your password"
+            value={this.state.password}
             onChange={this.updatePwField}
           />
 

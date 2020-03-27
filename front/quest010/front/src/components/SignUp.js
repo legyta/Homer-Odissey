@@ -8,21 +8,20 @@ const horizontal = "center";
 
 class SignUp extends Component {
   state = {
-    email: "mon@email.com",
-    password: "monPassw0rd",
-    name: "James",
-    lastname: "Bond",
-    flash: "",
-    open: false
+    email: "",
+    password: "",
+    name: "",
+    lastname: "",
+    flash: ""
   };
 
   updateEmailField = event => {
     const email = event.target.value;
-    this.setState({ userInput: email });
+    this.setState({ email: email });
   };
 
   updatePwField = e => {
-    this.setState({ pw: e.target.value });
+    this.setState({ password: e.target.value });
   };
 
   // updatePwConfField = e => {
@@ -76,25 +75,24 @@ class SignUp extends Component {
           <label htmlFor="email">enter email here</label>
           <TextField
             type="email"
-            name="email"
-            className="signup-email"
-            value={this.state.userInput}
+            placeholder="enter your email"
+            value={this.state.email}
             onChange={this.updateEmailField}
           />
 
           <label htmlFor="password">Password</label>
           <TextField
             type="password"
-            name="password"
             placeholder="enter your password"
+            value={this.state.password}
             onChange={this.updatePwField}
           />
 
           <label htmlFor="name">Name</label>
           <input
             type="text"
-            name="firstname"
             placeholder="enter your name"
+            value={this.state.name}
             onChange={this.updateFirstnameField}
           />
           <label htmlFor="lastname">Lastname</label>
@@ -102,6 +100,7 @@ class SignUp extends Component {
             type="text"
             name="lastname"
             placeholder="enter your surname"
+            value={this.state.lastname}
             onChange={this.updateLastnameField}
           />
 

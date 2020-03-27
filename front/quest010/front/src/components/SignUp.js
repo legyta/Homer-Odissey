@@ -1,12 +1,18 @@
 import React, { Component } from "react";
+import { Button, TextField, Snackbar } from "@material-ui/core";
+import "../components/signup.css";
+
+const vertical = "bottom";
+const horizontal = "center";
 
 class SignUp extends Component {
   state = {
+    email: "mon@email.com",
+    password: "monPassw0rd",
     name: "James",
     lastname: "Bond",
-    password: "monPassw0rd",
-    email: "mon@email.com",
-    userInput: "test@test.com"
+    flash: "",
+    open: false
   };
 
   updateFirstnameField = e => {
@@ -45,13 +51,36 @@ class SignUp extends Component {
         res => this.setState({ flash: res.flash }),
         err => this.setState({ flash: err.flash })
       );
+    this.setState({ open: false });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
   };
 
   render() {
     return (
-      <div className="form-email">
-        <h1>{JSON.stringify(this.state, 1, 1)} </h1>
-        <form onSubmit={this.handleSubmit}>
+      <div className="signup">
+        {/* <h1>{JSON.stringify(this.state, 1, 1)} </h1> */}
+        <form className="signup-form" onSubmit={this.handleSubmit}>
+          <h1>Sign up here!</h1>
+          <label htmlFor="email">enter email here</label>
+          <TextField
+            type="email"
+            name="email"
+            className="signup-email"
+            value={this.state.userInput}
+            onChange={this.updateEmailField}
+          />
+
+          <label htmlFor="password">Password</label>
+          <TextField
+            type="password"
+            name="password"
+            placeholder="enter your password"
+            onChange={this.updatePwField}
+          />
+
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -60,35 +89,41 @@ class SignUp extends Component {
             onChange={this.updateFirstnameField}
           />
           <label htmlFor="lastname">Lastname</label>
-          <input
+          <TextField
             type="text"
             name="lastname"
             placeholder="enter your surname"
             onChange={this.updateLastnameField}
           />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="enter your password"
-            onChange={this.updatePwField}
-          />
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+
+          {/* <label htmlFor="confirmPassword">Confirm Password</label>
+          <TextField
             type="password"
             name="password-conf"
             placeholder="confirm your password"
             onChange={this.updatePwConfField}
+          /> */}
+
+          <Button
+            className="signup-button"
+            value="submit"
+            variant="contained"
+            color="primary"
+            onClick={this.handleSubmit}
+          >
+            {" "}
+            Submit{" "}
+          </Button>
+
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={this.state.open}
+            onClose={this.handleClose}
+            ContentProps={{
+              "aria-describedby": "message-id"
+            }}
+            message={<span id="message-id">{this.state.flash}</span>}
           />
-          <label htmlFor="email">enter email here</label>
-          <input
-            type="email"
-            name="email"
-            className="signup-email"
-            value={this.state.userInput}
-            onChange={this.updateEmailField}
-          />
-          <input type="submit" value="Submit" />
         </form>
       </div>
     );

@@ -1,0 +1,25 @@
+.signup {
+  display: flex;
+  height: 50vh;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 60%;
+  height: 100%;
+}
+
+.signup-button {
+  width: 20%;
+  margin-top: 15px;
+}
+
+h1 {
+  display: centre;
+}
+
+img {
+  margin: 0 0;
+}

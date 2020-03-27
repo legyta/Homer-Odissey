@@ -7,10 +7,11 @@ const connection = require("../../helpers/db.js");
 // });
 
 authRouter.post("/signup", function(req, res, next) {
-  const formFill = req.body;
+  //const formFill = req.body;
   //const { flash, ...formFill } = req.body;
+  const { flash, open, ...newUser } = req.body;
 
-  connection.query("INSERT INTO users SET ?", formFill, (error, res) => {
+  connection.query("INSERT INTO users SET ?", newUser, (error, res) => {
     if (error) {
       res.status(500).json({ flash: error.message });
       res.end();

@@ -1,46 +1,45 @@
 import React, { Component } from "react";
-import { Button, TextField, Snackbar } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import "../components/signup.css";
 import { Link } from "react-router-dom";
 
 const vertical = "bottom";
 const horizontal = "center";
 
-class SignUp extends Component {
+class Profile extends Component {
   state = {
-    email: "mon@email.com",
-    password: "monPassw0rd",
-    name: "James",
-    lastname: "Bond",
-    flash: "",
-    open: false
+    profile: {
+      email: "homer.simpson@wildcodeschool.fr",
+      name: "Homer",
+      lastname: "Simpson"
+    }
   };
 
-  updateEmailField = event => {
-    const email = event.target.value;
-    this.setState({ userInput: email });
-  };
+  //   updateEmailField = event => {
+  //     const email = event.target.value;
+  //     this.setState({ userInput: email });
+  //   };
 
-  updatePwField = e => {
-    this.setState({ pw: e.target.value });
-  };
+  //   updatePwField = e => {
+  //     this.setState({ pw: e.target.value });
+  //   };
 
-  // updatePwConfField = e => {
-  //   this.setState({ pwconf: e.target.value });
+  //   updatePwConfField = e => {
+  //     this.setState({ pwconf: e.target.value });
+  //   };
+
+  // updateFirstnameField = e => {
+  //  this.setState({ name: e.target.value });
   // };
 
-  updateFirstnameField = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  updateLastnameField = e => {
-    this.setState({ lastname: e.target.value });
-  };
+  // updateLastnameField = e => {
+  // this.setState({ lastname: e.target.value });
+  //};
 
   handleSubmit = e => {
     e.preventDefault();
 
-    fetch("/auth/signup", {
+    fetch("/auth/profile", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -62,18 +61,11 @@ class SignUp extends Component {
   render() {
     return (
       <div className="signup">
-        <Link to="/signup"></Link>
-        <Link
-          to={{
-            pathname: `/signin`
-          }}
-        >
-          Go SignIn
-        </Link>
+        <Link to="/profile"></Link>
         {/* <h1>{JSON.stringify(this.state, 1, 1)} </h1> */}
         <form className="signup-form" onSubmit={this.handleSubmit}>
-          <h1>Sign up here!</h1>
-          <label htmlFor="email">enter email here</label>
+          <h1>Here's your profile!</h1>
+          <label htmlFor="email">Your email here</label>
           <TextField
             type="email"
             name="email"
@@ -82,26 +74,26 @@ class SignUp extends Component {
             onChange={this.updateEmailField}
           />
 
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label>
           <TextField
             type="password"
             name="password"
             placeholder="enter your password"
             onChange={this.updatePwField}
-          />
+          /> */}
 
           <label htmlFor="name">Name</label>
           <input
             type="text"
-            name="firstname"
-            placeholder="enter your name"
+            name="name"
+            placeholder={this.name}
             onChange={this.updateFirstnameField}
           />
           <label htmlFor="lastname">Lastname</label>
           <TextField
             type="text"
             name="lastname"
-            placeholder="enter your surname"
+            placeholder={this.lastname}
             onChange={this.updateLastnameField}
           />
 
@@ -112,7 +104,8 @@ class SignUp extends Component {
             placeholder="confirm your password"
             onChange={this.updatePwConfField}
           /> */}
-          <Button
+
+          {/* <Button
             className="signup-button"
             value="submit"
             variant="contained"
@@ -120,8 +113,9 @@ class SignUp extends Component {
             onClick={this.handleSubmit}
           >
             {" "}
-            <Link to="/"> Submit </Link>
-          </Button>
+            Submit{" "}
+          </Button> */}
+          {/* 
           <Snackbar
             anchorOrigin={{ vertical, horizontal }}
             open={this.state.open}
@@ -130,11 +124,22 @@ class SignUp extends Component {
               "aria-describedby": "message-id"
             }}
             message={<span id="message-id">{this.state.flash}</span>}
-          />
+          /> */}
+
+          <Button
+            className="signup-button"
+            value="submit"
+            variant="contained"
+            color="primary"
+            onClick={this.handleSubmit}
+          >
+            {" "}
+            <Link to="/signin"> Sign Out </Link>
+          </Button>
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+export default Profile;

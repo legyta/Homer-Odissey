@@ -9,11 +9,11 @@ const horizontal = "center";
 class SignUp extends Component {
   state = {
     email: "mon@email.com",
-    password: "monPassw0rd",
-    name: "James",
-    lastname: "Bond",
-    flash: "",
-    open: false
+    password: "monPassw0rd"
+    // name: "James",
+    // lastname: "Bond",
+    // flash: "",
+    // open: false
   };
 
   updateEmailField = event => {
@@ -25,22 +25,22 @@ class SignUp extends Component {
     this.setState({ pw: e.target.value });
   };
 
-  // updatePwConfField = e => {
-  //   this.setState({ pwconf: e.target.value });
+  //   updatePwConfField = e => {
+  //     this.setState({ pwconf: e.target.value });
+  //   };
+
+  // updateFirstnameField = e => {
+  //  this.setState({ name: e.target.value });
   // };
 
-  updateFirstnameField = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  updateLastnameField = e => {
-    this.setState({ lastname: e.target.value });
-  };
+  // updateLastnameField = e => {
+  // this.setState({ lastname: e.target.value });
+  //};
 
   handleSubmit = e => {
     e.preventDefault();
 
-    fetch("/auth/signup", {
+    fetch("/auth/signin", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -62,17 +62,17 @@ class SignUp extends Component {
   render() {
     return (
       <div className="signup">
-        <Link to="/signup"></Link>
+        <Link to="/signin"></Link>
         <Link
           to={{
-            pathname: `/signin`
+            pathname: `/signup`
           }}
         >
-          Go SignIn
+          Go SignUp
         </Link>
         {/* <h1>{JSON.stringify(this.state, 1, 1)} </h1> */}
         <form className="signup-form" onSubmit={this.handleSubmit}>
-          <h1>Sign up here!</h1>
+          <h1>Register Here!</h1>
           <label htmlFor="email">enter email here</label>
           <TextField
             type="email"
@@ -90,7 +90,7 @@ class SignUp extends Component {
             onChange={this.updatePwField}
           />
 
-          <label htmlFor="name">Name</label>
+          {/* <label htmlFor="name">Name</label>
           <input
             type="text"
             name="firstname"
@@ -103,7 +103,7 @@ class SignUp extends Component {
             name="lastname"
             placeholder="enter your surname"
             onChange={this.updateLastnameField}
-          />
+          /> */}
 
           {/* <label htmlFor="confirmPassword">Confirm Password</label>
           <TextField
@@ -112,6 +112,7 @@ class SignUp extends Component {
             placeholder="confirm your password"
             onChange={this.updatePwConfField}
           /> */}
+
           <Button
             className="signup-button"
             value="submit"
@@ -119,9 +120,9 @@ class SignUp extends Component {
             color="primary"
             onClick={this.handleSubmit}
           >
-            {" "}
-            <Link to="/"> Submit </Link>
+            <Link to="/profile"> Submit </Link>
           </Button>
+
           <Snackbar
             anchorOrigin={{ vertical, horizontal }}
             open={this.state.open}
